@@ -64,7 +64,7 @@ class TipoMascotaViewSet(viewsets.ModelViewSet):
 
 class MascotaViewSet(viewsets.ModelViewSet):
      
-    #model = Mascota
+    model = Mascota
     queryset = Mascota.objects.all()
     serializer_class = MascotaSerializer
     #filter_class = MascotaFilter

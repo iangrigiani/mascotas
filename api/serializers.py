@@ -20,8 +20,11 @@ class TipoMascotaSerializer(serializers.ModelSerializer):
 
 class MascotaSerializer(serializers.ModelSerializer):
     
-    tipo = serializers.StringRelatedField()
-    
+    tipo = serializers.SlugRelatedField(        
+        slug_field='tipo',
+        queryset=TipoMascota.objects.all()
+    )
+
     class Meta:
         model = Mascota
         fields = ('id','nombre','raza','tipo')
