@@ -1,5 +1,6 @@
 /__init__.pyc
-/serializer.pyc
+/serializers.pyc
+/filters.pyc
 /views.pyc
 /admin.pyc
 /models.pyc
