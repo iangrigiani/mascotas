@@ -6,6 +6,8 @@ from api.models import Mascota
 from api.serializers import MascotaSerializer
 from api.models import TipoMascota
 from api.serializers import TipoMascotaSerializer
+from api.models import Publicacion
+from api.serializers import PublicacionSerializer
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
@@ -96,3 +98,17 @@ class MascotaViewSet(viewsets.ModelViewSet):
     #delete
     def destroy(self, request, pk=None, *args, **kwargs):
         return viewsets.ModelViewSet.destroy(self, request, *args, **kwargs)
+    
+    
+class PublicacionViewSet(viewsets.ModelViewSet):
+     
+    model = Publicacion
+    queryset = Publicacion.objects.all()
+    serializer_class = PublicacionSerializer
+    #filter_class = MascotaFilter
+    search_fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado')
+    #ordering_fields = '__all__'
+
+    
+    
+         

@@ -18,6 +18,8 @@ class Usuario(models.Model):
         db_table = 'usuario'
         ordering = ('id',)
 
+    def __unicode__(self):
+        return '%s' % (self.id)
 
 
 class TipoMascota(models.Model):
@@ -65,9 +67,9 @@ class TipoAviso(models.Model):
 class Publicacion(models.Model):
     
     id = models.AutoField(primary_key=True,db_column='publicacion_id')
-    fk_mascota = models.ForeignKey(Mascota, db_column='fk_mascota', blank=True, null=True)
-    fk_usuario = models.ForeignKey(Usuario, db_column='fk_usuario', blank=True, null=True)
-    fk_aviso = models.ForeignKey(TipoAviso, db_column='fk_aviso', blank=True, null=True)
+    mascota = models.ForeignKey(Mascota, db_column='fk_mascota', blank=True, null=True)
+    usuario = models.ForeignKey(Usuario, db_column='fk_usuario', blank=True, null=True)
+    aviso = models.ForeignKey(TipoAviso, db_column='fk_aviso', blank=True, null=True)
     en_transito = models.CharField(max_length=1, blank=True,db_column='en_transito')
     fecha_publicacion = models.DateField(blank=True, null=True, db_column='fecha_publicacion')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado')
