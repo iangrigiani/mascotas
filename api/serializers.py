@@ -33,10 +33,7 @@ class MascotaSerializer(serializers.ModelSerializer):
 
 class PublicacionSerializer(serializers.ModelSerializer):
     
-#     tipo = serializers.SlugRelatedField(
-#         slug_field='tipo',
-#         queryset=Publicacion.objects.all()
-#     )
+
     mascota = MascotaSerializer()
     usuario = serializers.SlugRelatedField(
         slug_field='id', 
@@ -45,5 +42,23 @@ class PublicacionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Publicacion
-        fields = ('id', 'mascota', 'usuario', 'en_transito', 'fecha_publicacion', 'estado')
+        fields = ('id', 'mascota', 'usuario', 'en_transito', 'estado')
+        depth=1
+        
+        
+    def create(self, validated_data):
+
+        mascota_data = validated_data.pop('mascota')
+        mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'))
+        mascota_obj.save()
+
+        publicacion = Publicacion(usuario=validated_data.pop('usuario'), en_transito=validated_data.pop('en_transito'), estado=validated_data.pop('estado'))
+        publicacion.mascota = mascota_obj
+        
+        publicacion.save()
+        
+        return publicacion
+    
+    
+    
    

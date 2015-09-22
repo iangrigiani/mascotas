@@ -42,7 +42,7 @@ class Mascota(models.Model):
     id = models.AutoField(primary_key=True,db_column='mascota_id')
     nombre = models.CharField(max_length=50, blank=True, db_column='nombre')
     raza = models.CharField(max_length=50, blank=True, db_column='raza')
-    tipo = models.ForeignKey(TipoMascota, db_column='fk_tipo', blank=True, null=True)
+    tipo = models.ForeignKey(TipoMascota, db_column='fk_tipo', blank=True, null=True, unique=False)
      
      
     class Meta:

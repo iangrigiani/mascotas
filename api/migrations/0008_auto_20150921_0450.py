@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='mascota',
-            name='tipo',
+            name='fk_tipo',
             field=models.ForeignKey(db_column=b'fk_tipo', blank=True, to='api.TipoMascota', null=True),
         ),
     ]
