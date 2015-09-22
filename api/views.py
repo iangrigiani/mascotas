@@ -4,10 +4,14 @@ from api.serializers import UsuarioSerializer
 from api.filters import UsuarioFilter
 from api.models import Mascota
 from api.serializers import MascotaSerializer
+from api.filters import MascotaFilter
 from api.models import TipoMascota
 from api.serializers import TipoMascotaSerializer
 from api.models import Publicacion
 from api.serializers import PublicacionSerializer
+from api.filters import PublicacionFilter
+from api.models import TipoAviso
+from api.serializers import TipoAvisoSerializer
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
@@ -52,7 +56,7 @@ class TipoMascotaViewSet(viewsets.ModelViewSet):
     queryset = TipoMascota.objects.all()
     serializer_class = TipoMascotaSerializer
     #filter_class = UsuarioFilter
-    search_fields = ('id', 'tipo')
+    search_fields = ('tipo')
     ordering_fields = '__all__'
          
  
@@ -69,8 +73,8 @@ class MascotaViewSet(viewsets.ModelViewSet):
     model = Mascota
     queryset = Mascota.objects.all()
     serializer_class = MascotaSerializer
-    #filter_class = MascotaFilter
-    search_fields = ('id', 'nombre', 'raza', 'tipo')
+    filter_class = MascotaFilter
+    search_fields = ('nombre', 'raza', 'tipo')
     #ordering_fields = '__all__'
          
  
@@ -105,10 +109,27 @@ class PublicacionViewSet(viewsets.ModelViewSet):
     model = Publicacion
     queryset = Publicacion.objects.all()
     serializer_class = PublicacionSerializer
-    #filter_class = MascotaFilter
-    search_fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado')
+    filter_class = PublicacionFilter
+    search_fields = ('mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado')
     #ordering_fields = '__all__'
 
+
+class TipoAvisoViewSet(viewsets.ModelViewSet):
+     
+    model = TipoAviso
+    queryset = TipoAviso.objects.all()
+    serializer_class = TipoAvisoSerializer
+    #filter_class = UsuarioFilter
+    search_fields = ('tipo')
+    ordering_fields = '__all__'
+         
+ 
+    def list(self, request, *args, **kwargs):
+        return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
+   
+    #post
+    def create(self, request, *args, **kwargs):
+        return viewsets.ModelViewSet.create(self, request, *args, **kwargs)
     
     
          

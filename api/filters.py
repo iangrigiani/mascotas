@@ -1,6 +1,7 @@
 from rest_framework.compat import django_filters
 from api.models import Usuario
 from api.models import Mascota
+from api.models import Publicacion
  
 class UsuarioFilter(django_filters.FilterSet):
      
@@ -16,8 +17,17 @@ class UsuarioFilter(django_filters.FilterSet):
         fields = ['email','facebook_id','estado','telefono','direccion']
         
 class MascotaFilter(django_filters.FilterSet):
-    tipo = django_filters.NumberFilter(name="tipo")
+    tipo = django_filters.CharFilter(lookup_type='iexact',name="tipo__tipo")
     
     class Meta:
         model = Mascota
-        fields = ['id','nombre', 'raza', 'tipo']
+        fields = ['nombre', 'raza', 'tipo']
+        
+        
+class PublicacionFilter(django_filters.FilterSet):
+    mascota = django_filters.CharFilter(lookup_type='iexact',name="mascota__tipo__tipo")
+    aviso = django_filters.CharFilter(lookup_type='iexact',name="aviso__tipo")
+    
+    class Meta:
+        model = Publicacion
+        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'estado']

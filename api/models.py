@@ -62,6 +62,8 @@ class TipoAviso(models.Model):
         db_table = 'tipo_aviso'
         ordering = ('id',)
 
+    def __unicode__(self):
+        return '%s' % (self.tipo)
 
         
 class Publicacion(models.Model):
