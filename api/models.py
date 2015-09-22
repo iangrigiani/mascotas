@@ -81,4 +81,17 @@ class Publicacion(models.Model):
         managed = True
         db_table = 'publicacion'
         ordering = ('id',)
-     
+        
+        
+class MultimediaMascota(models.Model):
+    id = models.AutoField(primary_key=True,db_column='multimediamascota_id')
+    id_mascota = models.ForeignKey(Mascota, db_column='fk_mascota', blank=True, null=True)
+    tipo = models.CharField(max_length=50, blank=True, db_column='tipo')
+    url = models.CharField(max_length=150, null=True, blank=True,db_column='url')
+    orden = models.SmallIntegerField(blank=True, null=True, db_column='orden')
+    
+    class Meta:
+        managed = True
+        db_table = 'multimedia_mascota'
+        ordering = ('id','id_mascota','orden')
+    

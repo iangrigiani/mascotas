@@ -4,6 +4,7 @@ from api.models import Mascota
 from api.models import Publicacion
 from api.models import TipoMascota
 from api.models import TipoAviso
+from api.models import MultimediaMascota
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -20,16 +21,25 @@ class TipoMascotaSerializer(serializers.ModelSerializer):
         fields =('id', 'tipo')
         
 
+class MultimediaMascotaSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = MultimediaMascota
+        fields = ('id','id_mascota','tipo','url', 'orden')
+
+
+
 class MascotaSerializer(serializers.ModelSerializer):
     
     tipo = serializers.SlugRelatedField(        
         slug_field='tipo',
         queryset=TipoMascota.objects.all()
     )
-
+    multimedia = MultimediaMascotaSerializer()
+    
     class Meta:
         model = Mascota
-        fields = ('id','nombre','raza','tipo')
+        fields = ('id','nombre','raza','tipo', 'multimedia')
 
 
 
@@ -52,7 +62,6 @@ class PublicacionSerializer(serializers.ModelSerializer):
         slug_field='tipo', 
         queryset=TipoAviso.objects.all()
     )
-    
 
     class Meta:
         model = Publicacion
