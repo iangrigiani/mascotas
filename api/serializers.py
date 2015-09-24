@@ -71,16 +71,17 @@ class PublicacionSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         mascota_data = validated_data.pop('mascota')
+
         mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'))
         mascota_obj.save()
-
+ 
         publicacion = Publicacion(usuario=validated_data.pop('usuario'), 
             aviso=validated_data.pop('aviso'),  en_transito=validated_data.pop('en_transito'), 
             estado=validated_data.pop('estado'), latitud=validated_data.pop('latitud'), longitud=validated_data.pop('longitud'))
         publicacion.mascota = mascota_obj
-        
+         
         publicacion.save()
-        
+
         return publicacion
     
     

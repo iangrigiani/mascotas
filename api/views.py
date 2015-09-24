@@ -126,11 +126,11 @@ class PublicacionViewSet(viewsets.ModelViewSet):
         distancia = request.GET.get('distancia')
         
         if latitud==None:
-            latitud=0
+            latitud=-34.606515
         if longitud==None:
-            longitud=0
+            longitud=-58.435766
         if distancia==None:
-            distancia=1000
+            distancia=3000
         
         self.queryset = Publicacion.objects.in_distance(distancia, ('latitud', 'longitud'), (float(latitud), float(longitud)))
         
