@@ -1,4 +1,9 @@
 from django.db import models
+from django_earthdistance.models import EarthDistanceQuerySet
+from django_earthdistance.models import EarthDistance, LlToEarth
+from djorm_expressions.models import ExpressionManager
+
+
 
 class Usuario(models.Model):
      
@@ -75,7 +80,10 @@ class Publicacion(models.Model):
     en_transito = models.CharField(max_length=1, blank=True,db_column='en_transito')
     fecha_publicacion = models.DateField(blank=True, null=True, db_column='fecha_publicacion')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado')
-      
+    latitud = models.FloatField(blank=True, null=True, db_column='latitud')
+    longitud = models.FloatField(blank=True, null=True, db_column='longitud')
+    
+    objects = EarthDistanceQuerySet.as_manager()
      
     class Meta:
         managed = True

@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from djorm_expressions.models import ExpressionManager
 from api.models import Usuario
 from api.serializers import UsuarioSerializer
 from api.filters import UsuarioFilter
@@ -12,6 +13,7 @@ from api.serializers import PublicacionSerializer
 from api.filters import PublicacionFilter
 from api.models import TipoAviso
 from api.serializers import TipoAvisoSerializer
+
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
@@ -110,8 +112,30 @@ class PublicacionViewSet(viewsets.ModelViewSet):
     queryset = Publicacion.objects.all()
     serializer_class = PublicacionSerializer
     filter_class = PublicacionFilter
-    search_fields = ('mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado')
+    search_fields = ('mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud')
     #ordering_fields = '__all__'
+
+
+    def list(self, request, *args, **kwargs):
+        """
+        Lista todos los usuarios.
+        """
+        
+        latitud = request.GET.get('latitud')
+        longitud = request.GET.get('longitud')
+        distancia = request.GET.get('distancia')
+        
+        if latitud==None:
+            latitud=0
+        if longitud==None:
+            longitud=0
+        if distancia==None:
+            distancia=1000
+        
+        self.queryset = Publicacion.objects.in_distance(distancia, ('latitud', 'longitud'), (float(latitud), float(longitud)))
+        
+        return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
+
 
 
 class TipoAvisoViewSet(viewsets.ModelViewSet):
