@@ -1,5 +1,4 @@
 from rest_framework import viewsets
-from djorm_expressions.models import ExpressionManager
 from api.models import Usuario
 from api.serializers import UsuarioSerializer
 from api.filters import UsuarioFilter
@@ -131,8 +130,9 @@ class PublicacionViewSet(viewsets.ModelViewSet):
             longitud=-58.435766
         if distancia==None:
             distancia=3000
+            
         
-        self.queryset = Publicacion.objects.in_distance(distancia, ('latitud', 'longitud'), (float(latitud), float(longitud)))
+        self.queryset = Publicacion.objects.in_distance(distancia, ('latitud', 'longitud'), (latitud, longitud))
         
         return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
 
