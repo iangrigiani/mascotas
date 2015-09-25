@@ -12,6 +12,8 @@ from api.serializers import PublicacionSerializer
 from api.filters import PublicacionFilter
 from api.models import TipoAviso
 from api.serializers import TipoAvisoSerializer
+from api.models import MultimediaMascota
+from api.serializers import MultimediaMascotaSerializer
 
 
 
@@ -111,7 +113,7 @@ class PublicacionViewSet(viewsets.ModelViewSet):
     queryset = Publicacion.objects.all()
     serializer_class = PublicacionSerializer
     filter_class = PublicacionFilter
-    search_fields = ('mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud')
+    search_fields = ('mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud', 'multimedia')
     #ordering_fields = '__all__'
 
 
@@ -156,4 +158,13 @@ class TipoAvisoViewSet(viewsets.ModelViewSet):
         return viewsets.ModelViewSet.create(self, request, *args, **kwargs)
     
     
+class MultimediaViewSet(viewsets.ModelViewSet):
+     
+    model = MultimediaMascota
+    queryset = MultimediaMascota.objects.all()
+    serializer_class = MultimediaMascotaSerializer
+    #filter_class = UsuarioFilter
+    search_fields = ('url')
+    ordering_fields = '__all__'
+
          

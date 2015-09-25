@@ -49,7 +49,7 @@ class Mascota(models.Model):
     nombre = models.CharField(max_length=50, blank=True, db_column='nombre')
     raza = models.CharField(max_length=50, blank=True, db_column='raza')
     tipo = models.ForeignKey(TipoMascota, db_column='fk_tipo', blank=True, null=True, unique=False)
-     
+
      
     class Meta:
         managed = True
@@ -94,7 +94,7 @@ class Publicacion(models.Model):
         
 class MultimediaMascota(models.Model):
     id = models.AutoField(primary_key=True,db_column='multimediamascota_id')
-    id_mascota = models.ForeignKey(Mascota, db_column='fk_mascota', blank=True, null=True)
+    id_publicacion = models.ForeignKey(Publicacion, db_column='fk_publicacion', blank=True, null=True, related_name='multimedia')
     tipo = models.CharField(max_length=50, blank=True, db_column='tipo')
     url = models.CharField(max_length=150, null=True, blank=True,db_column='url')
     orden = models.SmallIntegerField(blank=True, null=True, db_column='orden')
@@ -102,5 +102,5 @@ class MultimediaMascota(models.Model):
     class Meta:
         managed = True
         db_table = 'multimedia_mascota'
-        ordering = ('id','id_mascota','orden')
+        ordering = ('id','id_publicacion','orden')
     
