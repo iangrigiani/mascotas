@@ -22,7 +22,7 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     serializer_class = UsuarioSerializer
     filter_class = UsuarioFilter
     ordering_fields = '__all__'
-    search_fields = ('email', 'facebook_id', 'estado', 'telefono', 'fecha_registro', 'direccion')
+    search_fields = ('email', 'facebook_id', 'estado', 'telefono', 'fecha_registro', 'direccion', 'latitud', 'longitud')
          
  
     def list(self, request, *args, **kwargs):
