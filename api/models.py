@@ -11,7 +11,7 @@ class Usuario(models.Model):
     facebook_id = models.CharField(max_length=20, blank=True, db_column='facebook_id')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado') 
     telefono = models.CharField(max_length=20, blank=True, db_column='telefono')
-    fecha_registro = models.DateField(blank=True, null=True, db_column='fecha_registro')
+    fecha_registro = models.DateTimeField(blank=True, null=True, db_column='fecha_registro')
     direccion = models.CharField(max_length=120, null=True, blank=True,db_column='direccion')
     latitud = models.FloatField(blank=True, null=True, db_column='latitud')
     longitud = models.FloatField(blank=True, null=True, db_column='longitud')
@@ -79,7 +79,7 @@ class Publicacion(models.Model):
     usuario = models.ForeignKey(Usuario, db_column='fk_usuario', blank=True, null=True)
     aviso = models.ForeignKey(TipoAviso, db_column='fk_aviso', blank=True, null=True)
     en_transito = models.CharField(max_length=1, blank=True,db_column='en_transito')
-    fecha_publicacion = models.DateField(blank=True, null=True, db_column='fecha_publicacion')
+    fecha_publicacion = models.DateTimeField(blank=True, null=True, db_column='fecha_publicacion')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado')
     latitud = models.FloatField(blank=True, null=True, db_column='latitud')
     longitud = models.FloatField(blank=True, null=True, db_column='longitud')
@@ -90,6 +90,9 @@ class Publicacion(models.Model):
         managed = True
         db_table = 'publicacion'
         ordering = ('id',)
+
+    def __unicode__(self):
+        return '%s' % (self.id)
         
         
 class MultimediaMascota(models.Model):

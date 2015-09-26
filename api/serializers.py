@@ -67,30 +67,29 @@ class PublicacionSerializer(serializers.ModelSerializer):
         slug_field='tipo', 
         queryset=TipoAviso.objects.all()
     )
-    multimedia = MultimediaMascotaSerializer()
+    multimedia = MultimediaMascotaSerializer(many=True)
 
     class Meta:
         model = Publicacion
-        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'estado', 'latitud', 'longitud', 'multimedia')
+        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud', 'multimedia')
         
         
     def create(self, validated_data):
 
         mascota_data = validated_data.pop('mascota')
-#         multimedia_data = mascota_data('multimedia')
-        
-        
+        multimedia_data = mascota_data('multimedia')
+               
 
         mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'))
         mascota_obj.save()
- 
+  
         publicacion = Publicacion(usuario=validated_data.pop('usuario'), 
             aviso=validated_data.pop('aviso'),  en_transito=validated_data.pop('en_transito'), 
             estado=validated_data.pop('estado'), latitud=validated_data.pop('latitud'), longitud=validated_data.pop('longitud'))
         publicacion.mascota = mascota_obj
-         
+ 
         publicacion.save()
-
+                
         return publicacion
     
     

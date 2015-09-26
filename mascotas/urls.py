@@ -17,7 +17,7 @@ router.register(r'mascotas', MascotaViewSet)
 router.register(r'tipo_mascotas', TipoMascotaViewSet)
 router.register(r'publicaciones', PublicacionViewSet)
 router.register(r'tipo_avisos', TipoAvisoViewSet)
-router.register(r'multimedia', MultimediaViewSet)
+router.register(r'multimedias', MultimediaViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
