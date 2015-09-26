@@ -113,7 +113,7 @@ class PublicacionViewSet(viewsets.ModelViewSet):
     queryset = Publicacion.objects.all()
     serializer_class = PublicacionSerializer
     filter_class = PublicacionFilter
-    search_fields = ('mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud', 'multimedia')
+    search_fields = ('mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud', 'multimedia', 'descripcion')
     #ordering_fields = '__all__'
 
 

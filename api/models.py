@@ -83,13 +83,14 @@ class Publicacion(models.Model):
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado')
     latitud = models.FloatField(blank=True, null=True, db_column='latitud')
     longitud = models.FloatField(blank=True, null=True, db_column='longitud')
+    descripcion = models.TextField(blank=True, null=True, db_column='descripcion')
     
     objects = EarthDistanceQuerySet.as_manager()
      
     class Meta:
         managed = True
         db_table = 'publicacion'
-        ordering = ('id',)
+        ordering = ('-fecha_publicacion','-id',)
 
     def __unicode__(self):
         return '%s' % (self.id)
