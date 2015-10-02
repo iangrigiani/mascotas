@@ -6,6 +6,7 @@ from api.views import TipoMascotaViewSet
 from api.views import PublicacionViewSet
 from api.views import TipoAvisoViewSet
 from api.views import MultimediaViewSet
+from api.views import MensajeViewSet
 
 
 
@@ -18,6 +19,7 @@ router.register(r'tipo_mascotas', TipoMascotaViewSet)
 router.register(r'publicaciones', PublicacionViewSet)
 router.register(r'tipo_avisos', TipoAvisoViewSet)
 router.register(r'multimedias', MultimediaViewSet)
+router.register(r'mensajes', MensajeViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

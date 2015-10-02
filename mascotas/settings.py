@@ -67,29 +67,29 @@ WSGI_APPLICATION = 'mascotas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-#         'NAME': 'servicios',
-#         'USER': 'postgres',
-#         'PASSWORD': 'nach0',
-#         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-#         'PORT': '5432',
-#     }
-# }
-
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': 'd61mlm57dv0bsf',
-        'USER': 'qgadfmpsdbvjlz',
-        'PASSWORD': 'DXl4wWNhIJ6EsIoX8UlkZpu1hf',
-        'HOST': 'ec2-54-163-228-188.compute-1.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        'NAME': 'servicios',
+        'USER': 'postgres',
+        'PASSWORD': 'nach0',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '5432',
     }
 }
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+#         'NAME': 'd61mlm57dv0bsf',
+#         'USER': 'qgadfmpsdbvjlz',
+#         'PASSWORD': 'DXl4wWNhIJ6EsIoX8UlkZpu1hf',
+#         'HOST': 'ec2-54-163-228-188.compute-1.amazonaws.com',   # Or an IP Address that your DB is hosted on
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Internationalization

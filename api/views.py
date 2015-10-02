@@ -14,6 +14,8 @@ from api.models import TipoAviso
 from api.serializers import TipoAvisoSerializer
 from api.models import MultimediaMascota
 from api.serializers import MultimediaMascotaSerializer
+from api.models import Mensaje
+from api.serializers import MensajeSerializer
 
 
 
@@ -167,4 +169,13 @@ class MultimediaViewSet(viewsets.ModelViewSet):
     search_fields = ('url')
     ordering_fields = '__all__'
 
-         
+
+class MensajeViewSet(viewsets.ModelViewSet):
+     
+    model = Mensaje
+    queryset = Mensaje.objects.all()
+    serializer_class = MensajeSerializer
+    #filter_class = UsuarioFilter
+    search_fields = ('id')
+    ordering_fields = '__all__'
+

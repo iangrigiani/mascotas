@@ -111,3 +111,15 @@ class MultimediaMascota(models.Model):
         db_table = 'multimedia_mascota'
         ordering = ('id','id_publicacion','orden')
     
+    
+class Mensaje(models.Model):
+    id = models.AutoField(primary_key=True,db_column='mensaje_id')
+    id_publicacion = models.ForeignKey(Publicacion, db_column='fk_publicacion', blank=True, null=True, related_name='mensajes')
+    usuario = models.ForeignKey(Usuario, db_column='fk_usuario', blank=True, null=True)
+    fecha_publicacion = models.DateTimeField(blank=True, null=True, db_column='fecha_publicacion')
+    texto = models.TextField(blank=True, null=True, db_column='texto')
+    
+    class Meta:
+        managed = True
+        db_table = 'mensaje'
+        ordering = ('id',)

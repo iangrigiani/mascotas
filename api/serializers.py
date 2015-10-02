@@ -5,6 +5,7 @@ from api.models import Publicacion
 from api.models import TipoMascota
 from api.models import TipoAviso
 from api.models import MultimediaMascota
+from api.models import Mensaje
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -55,6 +56,18 @@ class TipoAvisoSerializer(serializers.ModelSerializer):
         fields =('id', 'tipo')
 
 
+class MensajeSerializer(serializers.ModelSerializer):
+    
+    id_publicacion = serializers.SlugRelatedField(
+        slug_field='id',
+        queryset=Publicacion.objects.all()
+    )
+
+    class Meta:
+        model = Mensaje
+        fields = ('id','usuario', 'id_publicacion','fecha_publicacion','texto')
+
+
 class PublicacionSerializer(serializers.ModelSerializer):
     
 
@@ -68,10 +81,11 @@ class PublicacionSerializer(serializers.ModelSerializer):
         queryset=TipoAviso.objects.all()
     )
     multimedia = MultimediaMascotaSerializer(many=True)
+    mensajes = MensajeSerializer(many=True)
 
     class Meta:
         model = Publicacion
-        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud', 'multimedia', 'descripcion')
+        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud', 'multimedia', 'descripcion', 'mensajes')
         
         
     def create(self, validated_data):
