@@ -44,7 +44,7 @@ class MascotaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mascota
-        fields = ('id','nombre','raza','tipo')
+        fields = ('id','nombre','raza','tipo', 'sexo', 'edad')
 
 
 
@@ -80,7 +80,8 @@ class PublicacionSerializer(serializers.ModelSerializer):
 #         multimedia_data = mascota_data('multimedia')
                
 
-        mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'))
+        mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'), sexo=mascota_data.pop('sexo'),
+                              edad=mascota_data.pop('edad'))
         mascota_obj.save()
   
         publicacion = Publicacion(usuario=validated_data.pop('usuario'), 

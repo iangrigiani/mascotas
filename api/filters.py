@@ -27,7 +27,10 @@ class MascotaFilter(django_filters.FilterSet):
 class PublicacionFilter(django_filters.FilterSet):
     mascota = django_filters.CharFilter(lookup_type='iexact',name="mascota__tipo__tipo")
     aviso = django_filters.CharFilter(lookup_type='iexact',name="aviso__tipo")
+    sexo = django_filters.CharFilter(lookup_type='iexact',name="mascota__sexo")
+    edad_min = django_filters.CharFilter(lookup_type='gte',name="mascota__edad")
+    edad_max = django_filters.CharFilter(lookup_type='lte',name="mascota__edad")
     
     class Meta:
         model = Publicacion
-        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'estado']
+        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'estado', 'sexo', 'edad_min', 'edad_max']

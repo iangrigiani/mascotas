@@ -1,6 +1,7 @@
 from django.db import models
 from django_earthdistance.models import EarthDistanceQuerySet
 from django_earthdistance.models import EarthDistance, LlToEarth
+from django.db.models.fields import SmallIntegerField
 
 
 
@@ -49,6 +50,8 @@ class Mascota(models.Model):
     nombre = models.CharField(max_length=50, blank=True, db_column='nombre')
     raza = models.CharField(max_length=50, blank=True, db_column='raza')
     tipo = models.ForeignKey(TipoMascota, db_column='fk_tipo', blank=True, null=True, unique=False)
+    sexo = models.CharField(max_length=50, blank=True, db_column='sexo')
+    edad = SmallIntegerField(blank=True, null=True, db_column='edad')
 
      
     class Meta:
