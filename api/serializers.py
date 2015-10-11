@@ -45,7 +45,7 @@ class MascotaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mascota
-        fields = ('id','nombre','raza','tipo', 'sexo', 'edad')
+        fields = ('id','nombre','raza','tipo', 'sexo', 'edad', 'tamanio', 'compatible_chicos')
 
 
 
@@ -85,7 +85,8 @@ class PublicacionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Publicacion
-        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 'longitud', 'multimedia', 'descripcion', 'mensajes')
+        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 
+                  'longitud', 'multimedia', 'descripcion', 'mensajes')
         
         
     def create(self, validated_data):
@@ -95,7 +96,7 @@ class PublicacionSerializer(serializers.ModelSerializer):
                
 
         mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'), sexo=mascota_data.pop('sexo'),
-                              edad=mascota_data.pop('edad'))
+                              edad=mascota_data.pop('edad'), tamanio=mascota_data.pop('tamanio'), compatible_chicos=mascota_data.pop('compatible_chicos'),)
         mascota_obj.save()
   
         publicacion = Publicacion(usuario=validated_data.pop('usuario'), 

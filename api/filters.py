@@ -7,7 +7,7 @@ class UsuarioFilter(django_filters.FilterSet):
      
     email = django_filters.CharFilter(lookup_type='icontains',name="email")
     facebook_id = django_filters.CharFilter(lookup_type='iexact',name="facebook_id")
-    estado = django_filters.NumberFilter(lookup_type='iexact',name="estado")
+    estado = django_filters.NumberFilter(name="estado")
     telefono = django_filters.CharFilter(lookup_type='iexact',name="telefono")
     direccion = django_filters.CharFilter(lookup_type='icontains',name="direccion")
       
@@ -30,7 +30,9 @@ class PublicacionFilter(django_filters.FilterSet):
     sexo = django_filters.CharFilter(lookup_type='iexact',name="mascota__sexo")
     edad_min = django_filters.CharFilter(lookup_type='gte',name="mascota__edad")
     edad_max = django_filters.CharFilter(lookup_type='lte',name="mascota__edad")
+    tamanio = django_filters.CharFilter(lookup_type='iexact',name="mascota__tamanio")
+    compatible_chicos = django_filters.NumberFilter(name="mascota__compatible_chicos")
     
     class Meta:
         model = Publicacion
-        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'estado', 'sexo', 'edad_min', 'edad_max']
+        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'estado', 'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos']

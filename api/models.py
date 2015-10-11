@@ -52,6 +52,8 @@ class Mascota(models.Model):
     tipo = models.ForeignKey(TipoMascota, db_column='fk_tipo', blank=True, null=True, unique=False)
     sexo = models.CharField(max_length=50, blank=True, db_column='sexo')
     edad = SmallIntegerField(blank=True, null=True, db_column='edad')
+    tamanio = models.CharField(max_length=50, blank=True, db_column='tamanio')
+    compatible_chicos = models.SmallIntegerField(blank=True, null=True, db_column='compatible_chicos')
 
      
     class Meta:

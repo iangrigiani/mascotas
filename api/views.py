@@ -128,6 +128,7 @@ class PublicacionViewSet(viewsets.ModelViewSet):
         longitud = request.GET.get('longitud')
         distancia = request.GET.get('distancia')
         
+        # Por defecto centrado en FIUBA y con 3k de distancia
         if latitud==None:
             latitud=-34.606515
         if longitud==None:
