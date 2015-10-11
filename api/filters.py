@@ -1,6 +1,7 @@
 from rest_framework.compat import django_filters
 from api.models import Usuario
 from api.models import Mascota
+from api.models import MultimediaMascota
 from api.models import Publicacion
  
 class UsuarioFilter(django_filters.FilterSet):
@@ -36,3 +37,12 @@ class PublicacionFilter(django_filters.FilterSet):
     class Meta:
         model = Publicacion
         fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'estado', 'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos']
+
+
+class MultimediaMascotaFilter(django_filters.FilterSet):
+    tipo = django_filters.CharFilter(lookup_type='iexact',name="tipo")
+    id_publicacion = django_filters.NumberFilter(name="id_publicacion")
+    
+    class Meta:
+        model = MultimediaMascota
+        fields = ['tipo', 'id_publicacion']

@@ -14,6 +14,7 @@ from api.models import TipoAviso
 from api.serializers import TipoAvisoSerializer
 from api.models import MultimediaMascota
 from api.serializers import MultimediaMascotaSerializer
+from api.filters import MultimediaMascotaFilter
 from api.models import Mensaje
 from api.serializers import MensajeSerializer
 
@@ -96,7 +97,7 @@ class MascotaViewSet(viewsets.ModelViewSet):
         """
         return viewsets.ModelViewSet.retrieve(self, request, *args, **kwargs)
    
-        #post
+    #post
     def create(self, request, *args, **kwargs):
         return viewsets.ModelViewSet.create(self, request, *args, **kwargs)
      
@@ -166,7 +167,7 @@ class MultimediaViewSet(viewsets.ModelViewSet):
     model = MultimediaMascota
     queryset = MultimediaMascota.objects.all()
     serializer_class = MultimediaMascotaSerializer
-    #filter_class = UsuarioFilter
+    filter_class = MultimediaMascotaFilter
     search_fields = ('url')
     ordering_fields = '__all__'
 
