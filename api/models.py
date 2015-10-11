@@ -8,6 +8,8 @@ from django.db.models.fields import SmallIntegerField
 class Usuario(models.Model):
      
     id = models.AutoField(primary_key=True,db_column='usuario_id')
+    nombre = models.CharField(max_length=100, blank=True, db_column='nombre')
+    apellido = models.CharField(max_length=100, blank=True, db_column='apellido')
     email = models.CharField(max_length=50, blank=True, db_column='email')
     facebook_id = models.CharField(max_length=20, blank=True, db_column='facebook_id')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado') 

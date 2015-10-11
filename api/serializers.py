@@ -12,7 +12,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Usuario
-        fields = ('id','email','facebook_id','estado','telefono', 'fecha_registro', 'direccion', 'latitud', 'longitud', 'foto_perfil_url')
+        fields = ('id','nombre', 'apellido', 'email','facebook_id','estado','telefono', 'fecha_registro', 'direccion', 'latitud', 'longitud', 'foto_perfil_url')
         
         
 class TipoMascotaSerializer(serializers.ModelSerializer):
