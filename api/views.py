@@ -143,7 +143,6 @@ class PublicacionViewSet(viewsets.ModelViewSet):
         return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
 
 
-
 class TipoAvisoViewSet(viewsets.ModelViewSet):
      
     model = TipoAviso

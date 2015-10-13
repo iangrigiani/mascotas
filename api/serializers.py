@@ -28,7 +28,7 @@ class MultimediaMascotaSerializer(serializers.ModelSerializer):
 #         slug_field='id',
 #         queryset=Publicacion.objects.all()
 #     )
-
+    id = serializers.IntegerField(read_only=False)
 
     class Meta:
         model = MultimediaMascota
@@ -70,7 +70,6 @@ class MensajeSerializer(serializers.ModelSerializer):
 
 class PublicacionSerializer(serializers.ModelSerializer):
     
-
     mascota = MascotaSerializer()
     usuario = serializers.SlugRelatedField(
         slug_field='id', 
@@ -94,7 +93,7 @@ class PublicacionSerializer(serializers.ModelSerializer):
         mascota_data = validated_data.pop('mascota')
 
         mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'), sexo=mascota_data.pop('sexo'),
-                              edad=mascota_data.pop('edad'), tamanio=mascota_data.pop('tamanio'), compatible_chicos=mascota_data.pop('compatible_chicos'),)
+                              edad=mascota_data.pop('edad'), tamanio=mascota_data.pop('tamanio'), compatible_chicos=mascota_data.pop('compatible_chicos'))
         mascota_obj.save()
    
         publicacion = Publicacion(usuario=validated_data.pop('usuario'), 
@@ -112,5 +111,53 @@ class PublicacionSerializer(serializers.ModelSerializer):
         return publicacion
     
     
+    def update(self, instance, validated_data):
+
+        
+        mascota = instance.mascota
+        mascota_data = validated_data.pop('mascota')
+            
+            
+        mascota.nombre=mascota_data.pop('nombre')
+        mascota.raza=mascota_data.pop('raza')
+        mascota.tipo=mascota_data.pop('tipo')
+        mascota.sexo=mascota_data.pop('sexo')
+        mascota.edad=mascota_data.pop('edad')
+        mascota.tamanio=mascota_data.pop('tamanio')
+        mascota.compatible_chicos=mascota_data.pop('compatible_chicos')
+  
+        mascota.save()
+           
+        instance.usuario=validated_data.pop('usuario')
+        instance.aviso=validated_data.pop('aviso')
+        instance.en_transito=validated_data.pop('en_transito')
+        instance.estado=validated_data.pop('estado')
+        instance.latitud=validated_data.pop('latitud')
+        instance.longitud=validated_data.pop('longitud')
+        instance.descripcion=validated_data.pop('descripcion')        
+            
+        instance.save()         
+         
+        multimedia_ids = [item['id'] for item in validated_data['multimedia']]
+        
+        multimedia_array = MultimediaMascota.objects.filter(id_publicacion=instance.id)
+               
+        for multimedia_viejo in multimedia_array:
+            if multimedia_viejo.id not in multimedia_ids:
+                multimedia_viejo.delete()
+ 
+        for multimedia_obj in validated_data['multimedia']:
+            multimedia = MultimediaMascota(id=multimedia_obj['id'],tipo=multimedia_obj.pop('tipo'),url=multimedia_obj.pop('url'),orden=multimedia_obj.pop('orden'))
+            multimedia.id_publicacion = instance
+            multimedia.save()
+
+
+
+
+        return instance
     
+
+
+
+
    
