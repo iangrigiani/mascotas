@@ -28,7 +28,7 @@ class MultimediaMascotaSerializer(serializers.ModelSerializer):
 #         slug_field='id',
 #         queryset=Publicacion.objects.all()
 #     )
-    id = serializers.IntegerField(read_only=False)
+    id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = MultimediaMascota
@@ -138,16 +138,14 @@ class PublicacionSerializer(serializers.ModelSerializer):
             
         instance.save()         
          
-        multimedia_ids = [item['id'] for item in validated_data['multimedia']]
         
         multimedia_array = MultimediaMascota.objects.filter(id_publicacion=instance.id)
                
         for multimedia_viejo in multimedia_array:
-            if multimedia_viejo.id not in multimedia_ids:
-                multimedia_viejo.delete()
+            multimedia_viejo.delete()
  
         for multimedia_obj in validated_data['multimedia']:
-            multimedia = MultimediaMascota(id=multimedia_obj['id'],tipo=multimedia_obj.pop('tipo'),url=multimedia_obj.pop('url'),orden=multimedia_obj.pop('orden'))
+            multimedia = MultimediaMascota(tipo=multimedia_obj.pop('tipo'),url=multimedia_obj.pop('url'),orden=multimedia_obj.pop('orden'))
             multimedia.id_publicacion = instance
             multimedia.save()
 
