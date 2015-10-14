@@ -27,7 +27,7 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     serializer_class = UsuarioSerializer
     filter_class = UsuarioFilter
     ordering_fields = '__all__'
-    search_fields = ('email', 'facebook_id', 'estado', 'telefono', 'fecha_registro', 'direccion', 'latitud', 'longitud')
+    search_fields = ('email', 'facebook_id', 'estado', 'telefono', 'fecha_registro', 'direccion')
          
  
     def list(self, request, *args, **kwargs):
@@ -139,7 +139,7 @@ class PublicacionViewSet(viewsets.ModelViewSet):
             
         
         self.queryset = Publicacion.objects.in_distance(distancia, ('latitud', 'longitud'), (latitud, longitud))
-        
+
         return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
 
 

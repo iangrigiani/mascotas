@@ -12,7 +12,15 @@ class UsuarioSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Usuario
-        fields = ('id','nombre', 'apellido', 'email','facebook_id','estado','telefono', 'fecha_registro', 'direccion', 'latitud', 'longitud', 'foto_perfil_url')
+        fields = ('id','nombre', 'apellido', 'email','facebook_id','estado','telefono', 'fecha_registro', 'direccion', 'foto_perfil_url')
+
+
+class UsuarioMensajeSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Usuario
+        fields = ('id','nombre', 'apellido', 'foto_perfil_url')
+        
         
         
 class TipoMascotaSerializer(serializers.ModelSerializer):
@@ -68,6 +76,14 @@ class MensajeSerializer(serializers.ModelSerializer):
         fields = ('id','usuario', 'id_publicacion','fecha_publicacion','texto')
 
 
+class MensajePublicacionSerializer(serializers.ModelSerializer):
+
+    usuario = UsuarioMensajeSerializer()
+    class Meta:
+        model = Mensaje
+        fields = ('id','usuario','fecha_publicacion','texto')
+    
+
 class PublicacionSerializer(serializers.ModelSerializer):
     
     mascota = MascotaSerializer()
@@ -80,7 +96,7 @@ class PublicacionSerializer(serializers.ModelSerializer):
         queryset=TipoAviso.objects.all()
     )
     multimedia = MultimediaMascotaSerializer(many=True)
-    mensajes = MensajeSerializer(many=True)
+    mensajes = MensajePublicacionSerializer(many=True)
 
     class Meta:
         model = Publicacion
