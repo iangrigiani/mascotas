@@ -56,6 +56,7 @@ class Mascota(models.Model):
     edad = SmallIntegerField(blank=True, null=True, db_column='edad')
     tamanio = models.CharField(max_length=50, blank=True, db_column='tamanio')
     compatible_chicos = models.SmallIntegerField(blank=True, null=True, db_column='compatible_chicos')
+    medicacion = models.SmallIntegerField(blank=True, null=True, db_column='medicacion')
 
      
     class Meta:

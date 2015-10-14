@@ -45,7 +45,7 @@ class MascotaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mascota
-        fields = ('id','nombre','raza','tipo', 'sexo', 'edad', 'tamanio', 'compatible_chicos')
+        fields = ('id','nombre','raza','tipo', 'sexo', 'edad', 'tamanio', 'compatible_chicos', 'medicacion')
 
 
 
@@ -93,7 +93,8 @@ class PublicacionSerializer(serializers.ModelSerializer):
         mascota_data = validated_data.pop('mascota')
 
         mascota_obj = Mascota(nombre=mascota_data.pop('nombre'), raza=mascota_data.pop('raza'), tipo=mascota_data.pop('tipo'), sexo=mascota_data.pop('sexo'),
-                              edad=mascota_data.pop('edad'), tamanio=mascota_data.pop('tamanio'), compatible_chicos=mascota_data.pop('compatible_chicos'))
+                              edad=mascota_data.pop('edad'), tamanio=mascota_data.pop('tamanio'), compatible_chicos=mascota_data.pop('compatible_chicos'), 
+                              medicacion=mascota_data.pop('medicacion'))
         mascota_obj.save()
    
         publicacion = Publicacion(usuario=validated_data.pop('usuario'), 
@@ -117,7 +118,6 @@ class PublicacionSerializer(serializers.ModelSerializer):
         mascota = instance.mascota
         mascota_data = validated_data.pop('mascota')
             
-            
         mascota.nombre=mascota_data.pop('nombre')
         mascota.raza=mascota_data.pop('raza')
         mascota.tipo=mascota_data.pop('tipo')
@@ -125,6 +125,7 @@ class PublicacionSerializer(serializers.ModelSerializer):
         mascota.edad=mascota_data.pop('edad')
         mascota.tamanio=mascota_data.pop('tamanio')
         mascota.compatible_chicos=mascota_data.pop('compatible_chicos')
+        mascota.medicacion=mascota_data.pop('medicacion')
   
         mascota.save()
            
@@ -136,9 +137,8 @@ class PublicacionSerializer(serializers.ModelSerializer):
         instance.longitud=validated_data.pop('longitud')
         instance.descripcion=validated_data.pop('descripcion')        
             
-        instance.save()         
-         
-        
+        instance.save()
+
         multimedia_array = MultimediaMascota.objects.filter(id_publicacion=instance.id)
                
         for multimedia_viejo in multimedia_array:
@@ -149,13 +149,5 @@ class PublicacionSerializer(serializers.ModelSerializer):
             multimedia.id_publicacion = instance
             multimedia.save()
 
-
-
-
         return instance
-    
-
-
-
-
    
