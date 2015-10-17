@@ -17,6 +17,7 @@ class Usuario(models.Model):
     fecha_registro = models.DateTimeField(blank=True, null=True, db_column='fecha_registro')
     direccion = models.CharField(max_length=120, null=True, blank=True,db_column='direccion')
     foto_perfil_url = models.CharField(max_length=150, null=True, blank=True,db_column='foto_perfil_url')
+    notify_id = models.CharField(max_length=150, null=True, blank=True,db_column='notify_id')
  
      
      
