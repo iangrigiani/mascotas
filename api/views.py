@@ -17,8 +17,9 @@ from api.serializers import MultimediaMascotaSerializer
 from api.filters import MultimediaMascotaFilter
 from api.models import Mensaje
 from api.serializers import MensajeSerializer
-
-
+from api.models import Adopcion
+from api.serializers import AdopcionSerializer
+from api.filters import AdopcionFilter
 
 class UsuarioViewSet(viewsets.ModelViewSet):
      
@@ -180,3 +181,12 @@ class MensajeViewSet(viewsets.ModelViewSet):
     search_fields = ('id')
     ordering_fields = '__all__'
 
+
+class AdopcionViewSet(viewsets.ModelViewSet):
+     
+    model = Adopcion
+    queryset = Adopcion.objects.all()
+    serializer_class = AdopcionSerializer
+    filter_class = AdopcionFilter
+    search_fields = ('id')
+    ordering_fields = '__all__'

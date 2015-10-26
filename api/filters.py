@@ -3,6 +3,7 @@ from api.models import Usuario
 from api.models import Mascota
 from api.models import MultimediaMascota
 from api.models import Publicacion
+from api.models import Adopcion
  
 class UsuarioFilter(django_filters.FilterSet):
      
@@ -46,3 +47,14 @@ class MultimediaMascotaFilter(django_filters.FilterSet):
     class Meta:
         model = MultimediaMascota
         fields = ['tipo', 'id_publicacion']
+        
+        
+class AdopcionFilter(django_filters.FilterSet):
+    id_publicacion = django_filters.NumberFilter(name="publicacion")
+    id_usuario = django_filters.NumberFilter(name="usuario")
+    concretada = django_filters.NumberFilter(name="concretada")
+    notificada = django_filters.NumberFilter(name="notificada")
+    
+    class Meta:
+        model = Adopcion
+        fields = ['id_publicacion','id_usuario','concretada','notificada']

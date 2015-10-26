@@ -127,3 +127,19 @@ class Mensaje(models.Model):
         managed = True
         db_table = 'mensaje'
         ordering = ('id',)
+
+
+class Adopcion(models.Model):
+    id = models.AutoField(primary_key=True, db_column='adopcion_id')
+    publicacion = models.ForeignKey('Publicacion', db_column='fk_publicacion')
+    usuario = models.ForeignKey('Usuario', db_column='fk_usuario')
+    fecha_pedido = models.DateTimeField(blank=True, null=True, db_column='fecha_pedido')
+    concretada = models.SmallIntegerField(blank=True, null=True, default=0,db_column='concretada')
+    notificada = models.SmallIntegerField(blank=True, null=True, default=0,db_column='notificada')
+    
+    class Meta:
+        managed = True
+        db_table = 'adopcion'
+        ordering = ('-fecha_pedido',)
+    
+    
