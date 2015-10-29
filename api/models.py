@@ -135,7 +135,6 @@ class Adopcion(models.Model):
     usuario = models.ForeignKey('Usuario', db_column='fk_usuario')
     fecha_pedido = models.DateTimeField(blank=True, null=True, db_column='fecha_pedido')
     concretada = models.SmallIntegerField(blank=True, null=True, default=0,db_column='concretada')
-    notificada = models.SmallIntegerField(blank=True, null=True, default=0,db_column='notificada')
     
     class Meta:
         managed = True

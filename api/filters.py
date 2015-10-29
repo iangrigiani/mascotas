@@ -53,8 +53,7 @@ class AdopcionFilter(django_filters.FilterSet):
     id_publicacion = django_filters.NumberFilter(name="publicacion")
     id_usuario = django_filters.NumberFilter(name="usuario")
     concretada = django_filters.NumberFilter(name="concretada")
-    notificada = django_filters.NumberFilter(name="notificada")
     
     class Meta:
         model = Adopcion
-        fields = ['id_publicacion','id_usuario','concretada','notificada']
+        fields = ['id_publicacion','id_usuario','concretada']

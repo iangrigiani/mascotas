@@ -20,7 +20,7 @@ class UsuarioMensajeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Usuario
-        fields = ('id','nombre', 'apellido', 'foto_perfil_url')
+        fields = ('id','nombre', 'apellido', 'email', 'foto_perfil_url')
         
         
         
@@ -168,10 +168,18 @@ class PublicacionSerializer(serializers.ModelSerializer):
             multimedia.save()
 
         return instance
-    
+
 class AdopcionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Adopcion
-        fields = ('id','publicacion','usuario','fecha_pedido','concretada','notificada')    
+        fields = ('id','publicacion','usuario','fecha_pedido','concretada')    
+    
+
+class AdopcionListSerializer(serializers.ModelSerializer):
+
+    usuario = UsuarioMensajeSerializer()
+    class Meta:
+        model = Adopcion
+        fields = ('id','publicacion','usuario','fecha_pedido','concretada')    
    

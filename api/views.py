@@ -20,6 +20,7 @@ from api.serializers import MensajeSerializer
 from api.models import Adopcion
 from api.serializers import AdopcionSerializer
 from api.filters import AdopcionFilter
+from api.serializers import AdopcionListSerializer
 
 class UsuarioViewSet(viewsets.ModelViewSet):
      
@@ -29,32 +30,6 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     filter_class = UsuarioFilter
     ordering_fields = '__all__'
     search_fields = ('email', 'facebook_id', 'estado', 'telefono', 'fecha_registro', 'direccion')
-         
- 
-    def list(self, request, *args, **kwargs):
-        """
-        Lista todos los usuarios.
-        """
-        return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
- 
-   
-    def retrieve(self, request, *args, **kwargs):
-        """
-        Devuelve el usuario solicitado por id.
-        """
-        return viewsets.ModelViewSet.retrieve(self, request, *args, **kwargs)
-   
-    #post
-    def create(self, request, *args, **kwargs):
-        return viewsets.ModelViewSet.create(self, request, *args, **kwargs)
-     
-    #put    
-    def update(self, request, pk=None, *args, **kwargs):
-        return viewsets.ModelViewSet.update(self, request, *args, **kwargs)
- 
-    #delete
-    def destroy(self, request, pk=None, *args, **kwargs):
-        return viewsets.ModelViewSet.destroy(self, request, *args, **kwargs)
 
 
 class TipoMascotaViewSet(viewsets.ModelViewSet):
@@ -66,14 +41,6 @@ class TipoMascotaViewSet(viewsets.ModelViewSet):
     search_fields = ('tipo')
     ordering_fields = '__all__'
          
- 
-    def list(self, request, *args, **kwargs):
-        return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
-   
-    #post
-    def create(self, request, *args, **kwargs):
-        return viewsets.ModelViewSet.create(self, request, *args, **kwargs)
-
 
 class MascotaViewSet(viewsets.ModelViewSet):
      
@@ -83,33 +50,7 @@ class MascotaViewSet(viewsets.ModelViewSet):
     filter_class = MascotaFilter
     search_fields = ('nombre', 'raza', 'tipo')
     #ordering_fields = '__all__'
-         
- 
-    def list(self, request, *args, **kwargs):
-        """
-        Lista todos los usuarios.
-        """
-        return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
- 
-   
-    def retrieve(self, request, *args, **kwargs):
-        """
-        Devuelve el usuario solicitado por id.
-        """
-        return viewsets.ModelViewSet.retrieve(self, request, *args, **kwargs)
-   
-    #post
-    def create(self, request, *args, **kwargs):
-        return viewsets.ModelViewSet.create(self, request, *args, **kwargs)
-     
-    #put    
-    def update(self, request, pk=None, *args, **kwargs):
-        return viewsets.ModelViewSet.update(self, request, *args, **kwargs)
- 
-    #delete
-    def destroy(self, request, pk=None, *args, **kwargs):
-        return viewsets.ModelViewSet.destroy(self, request, *args, **kwargs)
-    
+
     
 class PublicacionViewSet(viewsets.ModelViewSet):
      
@@ -153,15 +94,7 @@ class TipoAvisoViewSet(viewsets.ModelViewSet):
     search_fields = ('tipo')
     ordering_fields = '__all__'
          
- 
-    def list(self, request, *args, **kwargs):
-        return viewsets.ModelViewSet.list(self, request, *args, **kwargs)
-   
-    #post
-    def create(self, request, *args, **kwargs):
-        return viewsets.ModelViewSet.create(self, request, *args, **kwargs)
-    
-    
+
 class MultimediaViewSet(viewsets.ModelViewSet):
      
     model = MultimediaMascota
@@ -190,3 +123,15 @@ class AdopcionViewSet(viewsets.ModelViewSet):
     filter_class = AdopcionFilter
     search_fields = ('id')
     ordering_fields = '__all__'
+
+
+class AdopcionListViewSet(viewsets.ModelViewSet):
+     
+    model = Adopcion
+    queryset = Adopcion.objects.all()
+    serializer_class = AdopcionListSerializer
+    filter_class = AdopcionFilter
+    search_fields = ('id')
+    ordering_fields = '__all__'
+    
+    

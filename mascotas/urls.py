@@ -8,6 +8,7 @@ from api.views import TipoAvisoViewSet
 from api.views import MultimediaViewSet
 from api.views import MensajeViewSet
 from api.views import AdopcionViewSet
+from api.views import AdopcionListViewSet
 
 
 
@@ -19,6 +20,7 @@ router.register(r'publicaciones', PublicacionViewSet)
 router.register(r'tipo_avisos', TipoAvisoViewSet)
 router.register(r'multimedias', MultimediaViewSet)
 router.register(r'mensajes', MensajeViewSet)
+router.register(r'adopciones_list', AdopcionListViewSet)
 router.register(r'adopciones', AdopcionViewSet)
 
 urlpatterns = [
