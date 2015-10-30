@@ -27,13 +27,22 @@ class MascotaFilter(django_filters.FilterSet):
         
         
 class PublicacionFilter(django_filters.FilterSet):
+
+    SEXO_CHOICES = (  ('Macho', 'Macho'),
+                      ('Hembra', 'Hembra'),)
+    TAMANIO_CHOICES = (('Pequenio', 'Pequenio'),
+                      ('Mediano', 'Mediano'),
+                      ('Grande', 'Grande'),)
+
+    
     mascota = django_filters.CharFilter(lookup_type='iexact',name="mascota__tipo__tipo")
     aviso = django_filters.CharFilter(lookup_type='iexact',name="aviso__tipo")
-    sexo = django_filters.CharFilter(lookup_type='iexact',name="mascota__sexo")
+    sexo = django_filters.MultipleChoiceFilter(choices=SEXO_CHOICES,name="mascota__sexo")
     edad_min = django_filters.CharFilter(lookup_type='gte',name="mascota__edad")
     edad_max = django_filters.CharFilter(lookup_type='lte',name="mascota__edad")
-    tamanio = django_filters.CharFilter(lookup_type='iexact',name="mascota__tamanio")
+    tamanio = django_filters.MultipleChoiceFilter(choices=TAMANIO_CHOICES,name="mascota__tamanio")
     compatible_chicos = django_filters.NumberFilter(name="mascota__compatible_chicos")
+
     
     class Meta:
         model = Publicacion
