@@ -11,6 +11,7 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=100, blank=True, db_column='nombre')
     apellido = models.CharField(max_length=100, blank=True, db_column='apellido')
     email = models.CharField(max_length=50, blank=True, db_column='email')
+    password = models.CharField(max_length=100, blank=True, db_column='password') 
     facebook_id = models.CharField(max_length=20, blank=True, db_column='facebook_id')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado') 
     telefono = models.CharField(max_length=20, blank=True, db_column='telefono')
@@ -18,6 +19,7 @@ class Usuario(models.Model):
     direccion = models.CharField(max_length=120, null=True, blank=True,db_column='direccion')
     foto_perfil_url = models.CharField(max_length=150, null=True, blank=True,db_column='foto_perfil_url')
     notify_id = models.CharField(max_length=150, null=True, blank=True,db_column='notify_id')
+    esAdmin = models.SmallIntegerField(blank=True, null=True, default=0, db_column='esAdmin')
  
      
      
