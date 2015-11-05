@@ -13,7 +13,8 @@ class UsuarioSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Usuario
-        fields = ('id','nombre', 'apellido', 'email','facebook_id','estado','telefono', 'fecha_registro', 'direccion', 'foto_perfil_url', 'notify_id')
+        fields = ('id','nombre', 'apellido', 'email', 'password', 'facebook_id','estado','telefono', 'fecha_registro', 
+                  'direccion', 'foto_perfil_url', 'notify_id', 'esAdmin')
 
 
 class UsuarioMensajeSerializer(serializers.ModelSerializer):
