@@ -102,7 +102,7 @@ class PublicacionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Publicacion
-        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'estado', 'latitud', 
+        fields = ('id', 'mascota', 'usuario', 'aviso', 'en_transito', 'fecha_publicacion', 'fecha_concretada', 'estado', 'latitud', 
                   'longitud', 'multimedia', 'descripcion', 'mensajes')
         
         
@@ -116,8 +116,9 @@ class PublicacionSerializer(serializers.ModelSerializer):
         mascota_obj.save()
    
         publicacion = Publicacion(usuario=validated_data.pop('usuario'), 
-            aviso=validated_data.pop('aviso'),  en_transito=validated_data.pop('en_transito'),fecha_publicacion=validated_data.pop('fecha_publicacion'), 
-            estado=validated_data.pop('estado'), latitud=validated_data.pop('latitud'), longitud=validated_data.pop('longitud'), descripcion=validated_data.pop('descripcion'))
+            aviso=validated_data.pop('aviso'),  en_transito=validated_data.pop('en_transito'),fecha_publicacion=validated_data.pop('fecha_publicacion'),
+            fecha_concretada=validated_data.pop('fecha_concretada'),estado=validated_data.pop('estado'), latitud=validated_data.pop('latitud'), 
+            longitud=validated_data.pop('longitud'), descripcion=validated_data.pop('descripcion'))
         publicacion.mascota = mascota_obj
 
         publicacion.save()
@@ -151,6 +152,7 @@ class PublicacionSerializer(serializers.ModelSerializer):
         instance.aviso=validated_data.pop('aviso')
         instance.en_transito=validated_data.pop('en_transito')
         instance.fecha_publicacion=validated_data.pop('fecha_publicacion')
+        instance.fecha_concretada=validated_data.pop('fecha_concretada')
         instance.estado=validated_data.pop('estado')
         instance.latitud=validated_data.pop('latitud')
         instance.longitud=validated_data.pop('longitud')

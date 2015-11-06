@@ -89,6 +89,7 @@ class Publicacion(models.Model):
     aviso = models.ForeignKey(TipoAviso, db_column='fk_aviso', blank=True, null=True)
     en_transito = models.CharField(max_length=1, blank=True,db_column='en_transito')
     fecha_publicacion = models.DateTimeField(blank=True, null=True, db_column='fecha_publicacion')
+    fecha_concretada = models.DateTimeField(blank=True, null=True, db_column='fecha_concretada')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado')
     latitud = models.FloatField(blank=True, null=True, db_column='latitud')
     longitud = models.FloatField(blank=True, null=True, db_column='longitud')
