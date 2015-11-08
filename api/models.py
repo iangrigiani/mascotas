@@ -17,7 +17,6 @@ class Usuario(models.Model):
     fecha_registro = models.DateTimeField(blank=True, null=True, db_column='fecha_registro')
     direccion = models.CharField(max_length=120, null=True, blank=True,db_column='direccion')
     foto_perfil_url = models.CharField(max_length=150, null=True, blank=True,db_column='foto_perfil_url')
-    notify_id = models.CharField(max_length=150, null=True, blank=True,db_column='notify_id')
  
      
      
@@ -87,6 +86,7 @@ class Publicacion(models.Model):
     aviso = models.ForeignKey(TipoAviso, db_column='fk_aviso', blank=True, null=True)
     en_transito = models.CharField(max_length=1, blank=True,db_column='en_transito')
     fecha_publicacion = models.DateTimeField(blank=True, null=True, db_column='fecha_publicacion')
+    fecha_concretada = models.DateTimeField(blank=True, null=True, db_column='fecha_concretada')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado')
     latitud = models.FloatField(blank=True, null=True, db_column='latitud')
     longitud = models.FloatField(blank=True, null=True, db_column='longitud')
