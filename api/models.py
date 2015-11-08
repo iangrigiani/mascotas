@@ -150,7 +150,7 @@ class DenunciaPublicacion(models.Model):
     id = models.AutoField(primary_key=True,db_column='denunciapublicacion_id')
     id_publicacion = models.ForeignKey('Publicacion', db_column='fk_publicacion')
     id_denunciante = models.ForeignKey('Usuario', db_column='fk_usuario')
-    fecha = models.DateTimeField(blank=True, null=True, db_column='fecha')
+    fecha = models.DateTimeField(blank=True, null=True, db_column='fecha_denuncia')
     motivo = models.TextField(blank=True, null=True, db_column='motivo')    
     
     class Meta:
@@ -163,7 +163,7 @@ class DenunciaUsuario(models.Model):
     id = models.AutoField(primary_key=True,db_column='denunciausuario_id')
     id_mensaje = models.ForeignKey('Mensaje', db_column='fk_mensaje')
     id_denunciante = models.ForeignKey('Usuario', db_column='fk_usuario')
-    fecha = models.DateTimeField(blank=True, null=True, db_column='fecha')
+    fecha = models.DateTimeField(blank=True, null=True, db_column='fecha_denuncia')
     motivo = models.TextField(blank=True, null=True, db_column='motivo')    
     
     class Meta:
