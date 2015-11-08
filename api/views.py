@@ -21,6 +21,13 @@ from api.models import Adopcion
 from api.serializers import AdopcionSerializer
 from api.filters import AdopcionFilter
 from api.serializers import AdopcionListSerializer
+from api.models import DenunciaPublicacion
+from api.serializers import DenunciaPublicacionSerializer
+from api.serializers import DenunciaPublicacionListSerializer
+from api.models import DenunciaUsuario
+from api.serializers import DenunciaUsuarioSerializer
+from api.serializers import DenunciaUsuarioListSerializer
+
 
 class UsuarioViewSet(viewsets.ModelViewSet):
      
@@ -134,4 +141,43 @@ class AdopcionListViewSet(viewsets.ModelViewSet):
     search_fields = ('id')
     ordering_fields = '__all__'
     
+
+class DenunciaPublicacionViewSet(viewsets.ModelViewSet):
+     
+    model = DenunciaPublicacion
+    queryset = DenunciaPublicacion.objects.all()
+    serializer_class = DenunciaPublicacionSerializer
+    #filter_class = AdopcionFilter
+    search_fields = ('id')
+    ordering_fields = '__all__'
+
+
+class DenunciaPublicacionListViewSet(viewsets.ModelViewSet):
+     
+    model = DenunciaPublicacion
+    queryset = DenunciaPublicacion.objects.all()
+    serializer_class = DenunciaPublicacionListSerializer
+    #filter_class = AdopcionFilter
+    search_fields = ('id')
+    ordering_fields = '__all__'
+
+
+class DenunciaUsuarioViewSet(viewsets.ModelViewSet):
+     
+    model = DenunciaUsuario
+    queryset = DenunciaUsuario.objects.all()
+    serializer_class = DenunciaUsuarioSerializer
+    #filter_class = AdopcionFilter
+    search_fields = ('id')
+    ordering_fields = '__all__'
+
+
+class DenunciaUsuarioListViewSet(viewsets.ModelViewSet):
+     
+    model = DenunciaUsuario
+    queryset = DenunciaUsuario.objects.all()
+    serializer_class = DenunciaUsuarioListSerializer
+    #filter_class = AdopcionFilter
+    search_fields = ('id')
+    ordering_fields = '__all__'
     

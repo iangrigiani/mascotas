@@ -11,7 +11,6 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=100, blank=True, db_column='nombre')
     apellido = models.CharField(max_length=100, blank=True, db_column='apellido')
     email = models.CharField(max_length=50, blank=True, db_column='email')
-    password = models.CharField(max_length=100, blank=True, db_column='password') 
     facebook_id = models.CharField(max_length=20, blank=True, db_column='facebook_id')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado') 
     telefono = models.CharField(max_length=20, blank=True, db_column='telefono')
@@ -19,7 +18,6 @@ class Usuario(models.Model):
     direccion = models.CharField(max_length=120, null=True, blank=True,db_column='direccion')
     foto_perfil_url = models.CharField(max_length=150, null=True, blank=True,db_column='foto_perfil_url')
     notify_id = models.CharField(max_length=150, null=True, blank=True,db_column='notify_id')
-    esAdmin = models.SmallIntegerField(blank=True, null=True, default=0, db_column='esAdmin')
  
      
      
@@ -89,7 +87,6 @@ class Publicacion(models.Model):
     aviso = models.ForeignKey(TipoAviso, db_column='fk_aviso', blank=True, null=True)
     en_transito = models.CharField(max_length=1, blank=True,db_column='en_transito')
     fecha_publicacion = models.DateTimeField(blank=True, null=True, db_column='fecha_publicacion')
-    fecha_concretada = models.DateTimeField(blank=True, null=True, db_column='fecha_concretada')
     estado = models.SmallIntegerField(blank=True, null=True, db_column='estado')
     latitud = models.FloatField(blank=True, null=True, db_column='latitud')
     longitud = models.FloatField(blank=True, null=True, db_column='longitud')
@@ -131,6 +128,9 @@ class Mensaje(models.Model):
         db_table = 'mensaje'
         ordering = ('id',)
 
+    def __unicode__(self):
+        return '%s' % (self.id)
+
 
 class Adopcion(models.Model):
     id = models.AutoField(primary_key=True, db_column='adopcion_id')
@@ -144,4 +144,30 @@ class Adopcion(models.Model):
         db_table = 'adopcion'
         ordering = ('-fecha_pedido',)
     
+    
+    
+class DenunciaPublicacion(models.Model):
+    id = models.AutoField(primary_key=True,db_column='denunciapublicacion_id')
+    id_publicacion = models.ForeignKey('Publicacion', db_column='fk_publicacion')
+    id_denunciante = models.ForeignKey('Usuario', db_column='fk_usuario')
+    fecha = models.DateTimeField(blank=True, null=True, db_column='fecha')
+    motivo = models.TextField(blank=True, null=True, db_column='motivo')    
+    
+    class Meta:
+        managed = True
+        db_table = 'denuncia_publicacion'
+        ordering = ('id',)
+
+
+class DenunciaUsuario(models.Model):
+    id = models.AutoField(primary_key=True,db_column='denunciausuario_id')
+    id_mensaje = models.ForeignKey('Mensaje', db_column='fk_mensaje')
+    id_denunciante = models.ForeignKey('Usuario', db_column='fk_usuario')
+    fecha = models.DateTimeField(blank=True, null=True, db_column='fecha')
+    motivo = models.TextField(blank=True, null=True, db_column='motivo')    
+    
+    class Meta:
+        managed = True
+        db_table = 'denuncia_usuario'
+        ordering = ('id',)
     
