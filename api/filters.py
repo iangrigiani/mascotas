@@ -5,6 +5,7 @@ from api.models import MultimediaMascota
 from api.models import Publicacion
 from api.models import Adopcion
 from api.models import DenunciaPublicacion
+from api.models import DenunciaUsuario
  
 class UsuarioFilter(django_filters.FilterSet):
      
@@ -75,16 +76,32 @@ class AdopcionFilter(django_filters.FilterSet):
 
 
 class DenunciaPublicacionListFilter(django_filters.FilterSet):
-    estado = django_filters.NumberFilter(name="id_publicacion__estado")
+    estado_publicacion = django_filters.NumberFilter(name="id_publicacion__estado")
     
     class Meta:
         model = DenunciaPublicacion
-        fields = ['estado']
+        fields = ['estado_publicacion']
 
 
 class DenunciaPublicacionFilter(django_filters.FilterSet):
-    estado = django_filters.NumberFilter(name="id_publicacion__estado")
+    estado_publicacion = django_filters.NumberFilter(name="id_publicacion__estado")
     
     class Meta:
         model = DenunciaPublicacion
-        fields = ['estado']
+        fields = ['estado_publicacion']
+
+
+class DenunciaUsuarioListFilter(django_filters.FilterSet):
+    estado_usuario = django_filters.NumberFilter(name="id_mensaje__usuario__estado")
+    
+    class Meta:
+        model = DenunciaUsuario
+        fields = ['estado_usuario']
+
+
+class DenunciaUsuarioFilter(django_filters.FilterSet):
+    estado_usuario = django_filters.NumberFilter(name="id_mensaje__usuario__estado")
+    
+    class Meta:
+        model = DenunciaUsuario
+        fields = ['estado_usuario']
