@@ -35,6 +35,8 @@ class PublicacionFilter(django_filters.FilterSet):
 
     
     mascota = django_filters.CharFilter(lookup_type='iexact',name="mascota__tipo__tipo")
+    fecha_publicacion_min = django_filters.DateFilter(lookup_type='gte', name="fecha_publicacion")
+    fecha_publicacion_max = django_filters.DateFilter(lookup_type='lte', name="fecha_publicacion")
     aviso = django_filters.CharFilter(lookup_type='iexact',name="aviso__tipo")
     sexo = django_filters.MultipleChoiceFilter(choices=SEXO_CHOICES,name="mascota__sexo")
     edad_min = django_filters.CharFilter(lookup_type='gte',name="mascota__edad")
@@ -45,7 +47,8 @@ class PublicacionFilter(django_filters.FilterSet):
     
     class Meta:
         model = Publicacion
-        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'estado', 'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos']
+        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'fecha_publicacion_min', 'fecha_publicacion_max', 'estado', 'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos']
+
 
 
 class MultimediaMascotaFilter(django_filters.FilterSet):
