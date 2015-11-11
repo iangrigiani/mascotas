@@ -27,6 +27,8 @@ from api.serializers import DenunciaPublicacionListSerializer
 from api.models import DenunciaUsuario
 from api.serializers import DenunciaUsuarioSerializer
 from api.serializers import DenunciaUsuarioListSerializer
+from api.filters import DenunciaPublicacionListFilter
+from api.filters import DenunciaPublicacionFilter
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
@@ -147,7 +149,7 @@ class DenunciaPublicacionViewSet(viewsets.ModelViewSet):
     model = DenunciaPublicacion
     queryset = DenunciaPublicacion.objects.all()
     serializer_class = DenunciaPublicacionSerializer
-    #filter_class = AdopcionFilter
+    filter_class = DenunciaPublicacionFilter
     search_fields = ('id')
     ordering_fields = '__all__'
 
@@ -157,7 +159,7 @@ class DenunciaPublicacionListViewSet(viewsets.ModelViewSet):
     model = DenunciaPublicacion
     queryset = DenunciaPublicacion.objects.all()
     serializer_class = DenunciaPublicacionListSerializer
-    #filter_class = AdopcionFilter
+    filter_class = DenunciaPublicacionListFilter
     search_fields = ('id')
     ordering_fields = '__all__'
 

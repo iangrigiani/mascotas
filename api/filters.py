@@ -4,6 +4,7 @@ from api.models import Mascota
 from api.models import MultimediaMascota
 from api.models import Publicacion
 from api.models import Adopcion
+from api.models import DenunciaPublicacion
  
 class UsuarioFilter(django_filters.FilterSet):
      
@@ -43,11 +44,13 @@ class PublicacionFilter(django_filters.FilterSet):
     edad_max = django_filters.CharFilter(lookup_type='lte',name="mascota__edad")
     tamanio = django_filters.MultipleChoiceFilter(choices=TAMANIO_CHOICES,name="mascota__tamanio")
     compatible_chicos = django_filters.NumberFilter(name="mascota__compatible_chicos")
+    estado_usuario = django_filters.NumberFilter(name="usuario__estado")
 
     
     class Meta:
         model = Publicacion
-        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'fecha_publicacion_min', 'fecha_publicacion_max', 'estado', 'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos']
+        fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'fecha_publicacion_min', 'fecha_publicacion_max', 'estado', 
+                  'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos', 'estado_usuario']
 
 
 
@@ -68,3 +71,20 @@ class AdopcionFilter(django_filters.FilterSet):
     class Meta:
         model = Adopcion
         fields = ['id_publicacion','id_usuario','concretada']
+        
+
+
+class DenunciaPublicacionListFilter(django_filters.FilterSet):
+    estado = django_filters.NumberFilter(name="id_publicacion__estado")
+    
+    class Meta:
+        model = DenunciaPublicacion
+        fields = ['estado']
+
+
+class DenunciaPublicacionFilter(django_filters.FilterSet):
+    estado = django_filters.NumberFilter(name="id_publicacion__estado")
+    
+    class Meta:
+        model = DenunciaPublicacion
+        fields = ['estado']
