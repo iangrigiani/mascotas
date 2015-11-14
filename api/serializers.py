@@ -22,7 +22,7 @@ class UsuarioMensajeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Usuario
-        fields = ('id','nombre', 'apellido', 'email', 'foto_perfil_url')
+        fields = ('id','nombre', 'apellido', 'email', 'estado', 'foto_perfil_url')
         
         
         
