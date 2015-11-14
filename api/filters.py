@@ -46,12 +46,13 @@ class PublicacionFilter(django_filters.FilterSet):
     tamanio = django_filters.MultipleChoiceFilter(choices=TAMANIO_CHOICES,name="mascota__tamanio")
     compatible_chicos = django_filters.NumberFilter(name="mascota__compatible_chicos")
     estado_usuario = django_filters.NumberFilter(name="usuario__estado")
+    estado_mensaje = django_filters.NumberFilter(name="mensajes__usuario__estado")
 
     
     class Meta:
         model = Publicacion
         fields = ['usuario', 'aviso', 'mascota', 'en_transito', 'fecha_publicacion_min', 'fecha_publicacion_max', 'estado', 
-                  'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos', 'estado_usuario']
+                  'sexo', 'edad_min', 'edad_max', 'tamanio', 'compatible_chicos', 'estado_usuario', 'estado_mensaje']
 
 
 
